@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="items.xsd">
+
+
+	<relations>
+		<relation code="RicettaRelational" generate="true" localized="true">
+			<sourceElement type="Ricetta" qualifier="ricette"
+				cardinality="one" />
+			<targetElement type="Dose" qualifier="dosi"
+				cardinality="many" />
+		</relation>
+		<relation code="IngredientiRelational" generate="true"
+			localized="true">
+			<sourceElement type="Ingrediente" qualifier="ingredienti"
+				cardinality="one" />
+			<targetElement type="Dose" qualifier="dosi" cardinality="many" />
+		</relation>
+
+		<relation code="Dosi2Relational" autocreate="true" generate="true"
+			localized="true">
+			<deployment table="DosiRel" typecode="20101"></deployment>
+			<sourceElement type="Ingrediente" qualifier="ingredienti" cardinality="many">
+				<modifiers read="true" write="true" search="true" optional="true" />
+			</sourceElement>
+			<targetElement type="Ricetta" qualifier="ricette" cardinality="many">
+				<modifiers read="true" write="true" search="true" optional="true" />
+			</targetElement>
+		</relation>
+	</relations>
+
+
+	<itemtypes>
+		<itemtype code="Ricetta" autocreate="true" generate="false">
+			<attributes>
+				<attribute qualifier="id" type="java.lang.Integer">
+					<description>id</description>
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="nome" type="java.lang.String">
+					<description>Nome del piatto</description>
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="tCottura" type="java.lang.Integer">
+					<description>Tempo cottura</description>
+					<modifiers optional="false" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="portata" type="java.lang.String">
+					<description>Portata del menu</description>
+					<modifiers optional="false" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="calorie" type="java.util.Integer">
+					<description>Quantitativo calorie</description>
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="paeseProvenienza" type="java.lang.String">
+					<description>Da quale paese proviene</description>
+					<modifiers optional="false" />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="Ingrediente" autocreate="true" generate="false">
+			<attributes>
+				<attribute qualifier="nome" type="java.lang.String">
+					<description>Nome Ingrediente</description>
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="provenienza" type="java.lang.String">
+					<description>Paese d'appartenenza</description>
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="tipo" type="java.util.String">
+					<description>Tipo</description>
+					<modifiers optional="false" />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="Dose" autocreate="true" generate="false">
+			<attributes>
+				<attribute qualifier="ricetta" type="java.lang.Integer">
+					<description>Nome Ingrediente</description>
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="ingrediente" type="java.lang.String">
+					<description>ingrediente</description>
+					<modifiers optional="false" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="quantita" type="java.util.Integer">
+					<description>quantita in g</description>
+					<modifiers optional="false" />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+
+	</itemtypes>
+
+</items>
