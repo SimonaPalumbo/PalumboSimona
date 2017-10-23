@@ -1,5 +1,5 @@
 #select all of table = user and name of smartphone and to press
-select a.* , b.name
+select a.*, b.name as Smartphone
 from user as a inner join smartphone as b
 on a.id=b.id
 where a.personalSmartphone
